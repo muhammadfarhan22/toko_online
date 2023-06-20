@@ -12,7 +12,7 @@ class Model_invoice extends CI_Model
             'nama' => $nama,
             'alamat' => $alamat,
             'tgl_pesan' => date('Y-m-d H:i:s'),
-            'batas_bayar' => date('Y-m-d H:i:s', mktime(date('H'), date('i'), date('s'), date('m'), date('d'), date('Y'))),
+            'batas_bayar' => date('Y-m-d H:i:s', mktime(date('H'), date('i'), date('s'), date('m'), date('d') + 1, date('Y'))),
         );
 
         $this->db->insert('tb_invoice', $invoice);
@@ -42,6 +42,12 @@ class Model_invoice extends CI_Model
         }
     }
 
+    public function getJumlahPesanan()
+    {
+        // Query untuk menghitung jumlah pesanan
+        $query = $this->db->get('tb_invoice');
+        return $query->num_rows(); // Mengembalikan jumlah pesanan
+    }
 
     public function ambil_id_invoice($id_invoice)
     {
@@ -51,6 +57,12 @@ class Model_invoice extends CI_Model
         } else {
             return false;
         }
+    }
+
+    public function hapus_data($where, $table)
+    {
+        $this->db->where($where);
+        $this->db->delete($table);
     }
 
     public function ambil_id_pesanan($id_invoice)
