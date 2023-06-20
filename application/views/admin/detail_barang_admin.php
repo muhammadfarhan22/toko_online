@@ -33,7 +33,7 @@
                                 </strong></td>
                         </tr>
                     </table>
-                    <?php echo anchor('admin/dashboard_admin/index/', '<div class="btn btn-sm btn-danger mb-3">Kembali</div>') ?>
+                    <?php echo anchor('admin/data_barang/index/', '<div class="btn btn-sm btn-danger mb-3">Kembali</div>') ?>
                 </div>
             </div>
         <?php endforeach; ?>
